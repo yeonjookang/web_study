@@ -2,6 +2,7 @@ package com.example.web_service.web;
 
 import com.example.web_service.service.posts.PostsService;
 import com.example.web_service.web.dto.PostsResponseDto;
+import com.example.web_service.web.dto.PostsResultDto;
 import com.example.web_service.web.dto.PostsSaveRequestDto;
 import com.example.web_service.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +26,10 @@ public class PostsApiController {
     @GetMapping("/api/v1/posts/{id}")
     public PostsResponseDto findById(@PathVariable Long id){
         return postsService.findById(id);
+    }
+
+    @GetMapping("/api/v1/posts")
+    public PostsResultDto findAll(){
+        return postsService.findAll();
     }
 }

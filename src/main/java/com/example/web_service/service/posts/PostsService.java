@@ -3,11 +3,15 @@ package com.example.web_service.service.posts;
 import com.example.web_service.web.domain.posts.Posts;
 import com.example.web_service.web.domain.posts.PostsRepository;
 import com.example.web_service.web.dto.PostsResponseDto;
+import com.example.web_service.web.dto.PostsResultDto;
 import com.example.web_service.web.dto.PostsSaveRequestDto;
 import com.example.web_service.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
@@ -34,5 +38,15 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다. id =" + id));
 
         return new PostsResponseDto(entity);
+    }
+
+    public PostsResultDto findAll(){
+        List<Posts> posts = postsRepository.findAll();
+
+        List<PostsResponseDto> collect = posts.stream()
+                .map(p -> new PostsResponseDto(p))
+                .collect(Collectors.toList());
+
+        return new PostsResultDto(collect);
     }
 }
