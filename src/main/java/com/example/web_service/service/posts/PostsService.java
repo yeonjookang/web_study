@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -48,5 +49,14 @@ public class PostsService {
                 .collect(Collectors.toList());
 
         return new PostsResultDto(collect);
+    }
+
+    public Long delete(Long id){
+        Optional<Posts> findPosts = postsRepository.findById(id);
+        Posts posts = findPosts.get();
+
+        postsRepository.delete(posts);
+
+        return id;
     }
 }

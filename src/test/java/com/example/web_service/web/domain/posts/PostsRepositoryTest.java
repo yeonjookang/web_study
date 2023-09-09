@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.jayway.jsonpath.internal.path.PathCompiler.fail;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -105,5 +108,24 @@ public class PostsRepositoryTest    {
         //then
         assertThat(postsList.get(0).getTitle()).isEqualTo("title1");
         assertThat(postsList.get(1).getTitle()).isEqualTo("title2");
+    }
+
+    @Test
+    public void 게시글_삭제(){
+        //given
+        LocalDateTime now = LocalDateTime.of(2019, 6, 4, 0, 0, 0);
+        Posts savePost = postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("author")
+                .build());
+
+        //when
+        postsRepository.delete(savePost);
+
+        //then
+        postsRepository.findById(savePost.getId()).ifPresent(post -> {
+            fail("게시글이 삭제되지 않았습니다.");
+        });
     }
 }
