@@ -2,10 +2,7 @@ package com.example.web_service.web.service.posts;
 
 import com.example.web_service.web.domain.posts.Posts;
 import com.example.web_service.web.domain.posts.PostsRepository;
-import com.example.web_service.web.dto.PostsResponseDto;
-import com.example.web_service.web.dto.PostsResultDto;
-import com.example.web_service.web.dto.PostsSaveRequestDto;
-import com.example.web_service.web.dto.PostsUpdateRequestDto;
+import com.example.web_service.web.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,5 +55,12 @@ public class PostsService {
         postsRepository.delete(posts);
 
         return id;
+    }
+
+    @Transactional
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new)
+                .collect(Collectors.toList());
     }
 }
