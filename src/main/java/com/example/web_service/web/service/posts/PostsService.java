@@ -1,4 +1,4 @@
-package com.example.web_service.service.posts;
+package com.example.web_service.web.service.posts;
 
 import com.example.web_service.web.domain.posts.Posts;
 import com.example.web_service.web.domain.posts.PostsRepository;

@@ -4,22 +4,19 @@ import com.example.web_service.web.domain.posts.Posts;
 import com.example.web_service.web.domain.posts.PostsRepository;
 import com.example.web_service.web.dto.PostsResponseDto;
 import com.example.web_service.web.dto.PostsResultDto;
-import com.example.web_service.web.dto.PostsSaveRequestDto;
 import com.example.web_service.web.dto.PostsUpdateRequestDto;
+import com.example.web_service.web.service.posts.PostsService;
 import jakarta.persistence.EntityManager;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest

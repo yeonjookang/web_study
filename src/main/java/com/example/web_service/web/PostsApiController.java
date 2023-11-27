@@ -1,6 +1,6 @@
 package com.example.web_service.web;
 
-import com.example.web_service.service.posts.PostsService;
+import com.example.web_service.web.service.posts.PostsService;
 import com.example.web_service.web.dto.PostsResponseDto;
 import com.example.web_service.web.dto.PostsResultDto;
 import com.example.web_service.web.dto.PostsSaveRequestDto;
